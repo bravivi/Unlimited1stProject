@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="./boot/css/bootstrap.min.css" rel="stylesheet"/>
+<script type="text/javascript" src="./boot/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		$.ajax({
+
+			url : '../ChattingServlet?command=loadinfo',
+			type : 'GET',
+			dataType : 'json',
+			success : function(data) {
+
+				$("#nationality").attr('value',data.nationality);
+				$("#language").attr('value',data.language);
+			}
+
+		});
+
+	});
+</script>
+</head>
+<body> 
+	<form action="../ChattingServlet?command=newchat" method="post">
+		<label for="title">커뮤니케이션 제목</label> 
+		<input type="text" name="title">
+		<br> 
+		<label for="nationality">국적</label> 
+		<input type="text" name="nationality" id="nationality" readonly="readonly"> <br> 
+		<label for="language">언어</label> 
+			<input type="text" name="language" id="language" readonly="readonly"> <br> 
+			<label for="studytime">시간</label>
+		<input type="radio" name="studytime" value="10">10 <input
+			type="radio" name="studytime" value="20">20 <input
+			type="radio" name="studytime" value="30">30 <input
+			type="radio" name="studytime" value="상의">상의 <br> 
+			<label
+			for="studypoint">10분당 포인트</label> 
+			<input type="number"
+			name="studypoint"> <br> <input type="submit">
+	</form>
+</body>
+</html>
